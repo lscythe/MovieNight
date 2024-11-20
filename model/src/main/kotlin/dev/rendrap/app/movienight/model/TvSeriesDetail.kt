@@ -13,5 +13,5 @@ data class TvSeriesDetail(
     val ratingCount: Int,
     val network: String,
     val originCountry: List<String>,
-    val seasons: List<Season>
+    val seasons: Seasons
 )
