@@ -12,6 +12,8 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -23,4 +25,16 @@ dependencyResolutionManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "MovieNight"
 include(":app")
+
+include(
+    listOf(
+        ":core:common",
+        ":core:database",
+        ":core:datastore",
+        ":core:designsystem",
+        ":core:network",
+        ":core:resources",
+        ":core:ui"
+    )
+)
  

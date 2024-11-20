@@ -55,7 +55,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             testImplementation(libs.library("kotest.assertions.core"))
             testImplementation(libs.library("mockk"))
             testImplementation(libs.library("turbine"))
-            testImplementation(libs.library("kotlinx.coroutines.test"))
         }
     }
 }
