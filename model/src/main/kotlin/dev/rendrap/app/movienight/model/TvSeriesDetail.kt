@@ -1,7 +1,7 @@
 package dev.rendrap.app.movienight.model
 
 data class TvSeriesDetail(
-    val id: Int,
+    val id: Long,
     val adult: Boolean,
     val name: String,
     val originalName: String,

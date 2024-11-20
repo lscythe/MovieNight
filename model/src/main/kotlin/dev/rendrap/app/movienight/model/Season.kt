@@ -8,7 +8,7 @@ data class Season(
 typealias Seasons = List<Season>
 
 data class SeasonDetail(
-    val id: Int,
+    val id: Long,
     val name: String,
     val airDate: String,
     val image: String,
