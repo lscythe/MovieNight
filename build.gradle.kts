@@ -13,5 +13,5 @@ plugins {
     alias(libs.plugins.kotlin.plugin.serialization) apply false
     alias(libs.plugins.kotlin.plugin.compose) apply false
 
-    alias(libs.plugins.movienight.versioning)
+    alias(libs.plugins.movienight.versioning) apply true
 }

@@ -1,59 +1,64 @@
-//plugins {
-//    alias(libs.plugins.android.application)
-//    alias(libs.plugins.kotlin.android)
-//    alias(libs.plugins.kotlin.compose)
-//}
-//
-//android {
-//    namespace = "dev.rendrap.app.movienight"
-//    compileSdk = 34
-//
-//    defaultConfig {
-//        applicationId = "dev.rendrap.app.movienight"
-//        minSdk = 24
-//        targetSdk = 34
-//        versionCode = 1
-//        versionName = "1.0"
-//
-//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-//    }
-//
-//    buildTypes {
-//        release {
-//            isMinifyEnabled = false
-//            proguardFiles(
-//                getDefaultProguardFile("proguard-android-optimize.txt"),
-//                "proguard-rules.pro"
-//            )
-//        }
-//    }
-//    compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_11
-//        targetCompatibility = JavaVersion.VERSION_11
-//    }
-//    kotlinOptions {
-//        jvmTarget = "11"
-//    }
-//    buildFeatures {
-//        compose = true
-//    }
-//}
-//
-//dependencies {
-//
-//    implementation(libs.androidx.core.ktx)
-//    implementation(libs.androidx.lifecycle.runtime.ktx)
-//    implementation(libs.androidx.activity.compose)
-//    implementation(platform(libs.androidx.compose.bom))
-//    implementation(libs.androidx.ui)
-//    implementation(libs.androidx.ui.graphics)
-//    implementation(libs.androidx.ui.tooling.preview)
-//    implementation(libs.androidx.material3)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.junit)
-//    androidTestImplementation(libs.androidx.espresso.core)
-//    androidTestImplementation(platform(libs.androidx.compose.bom))
-//    androidTestImplementation(libs.androidx.ui.test.junit4)
-//    debugImplementation(libs.androidx.ui.tooling)
-//    debugImplementation(libs.androidx.ui.test.manifest)
-//}
+import com.android.manifmerger.PlaceholderHandler.APPLICATION_ID
+import dev.rendrap.app.movienight.BuildTypes
+import dev.rendrap.app.movienight.config.BuildConfig.INSTRUMENT_RUNNER
+
+plugins {
+    id(libs.plugins.movienight.android.application.asProvider().get().pluginId)
+    id(libs.plugins.movienight.android.application.compose.get().pluginId)
+    id(libs.plugins.movienight.hilt.get().pluginId)
+}
+android {
+    defaultConfig {
+        applicationId = APPLICATION_ID
+
+        testInstrumentationRunner = INSTRUMENT_RUNNER
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix = BuildTypes.DEBUG.applicationIdSuffix
+        }
+        release {
+            isMinifyEnabled = true
+            applicationIdSuffix = BuildTypes.RELEASE.applicationIdSuffix
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
+            signingConfig = signingConfigs.named("debug").get()
+        }
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    packaging {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        }
+    }
+
+    @Suppress("UnstableApiUsage")
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+    namespace = APPLICATION_ID
+}
+
+
+dependencies {
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.navigation.compose)
+}
