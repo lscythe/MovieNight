@@ -6,3 +6,5 @@ data class Video(
     val site: String,
     val publishedAt: String
 )
+
+typealias Videos = List<Video>

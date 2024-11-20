@@ -7,3 +7,5 @@ data class Review(
     val content: String,
     val rating: Int
 )
+
+typealias Reviews = List<Review>

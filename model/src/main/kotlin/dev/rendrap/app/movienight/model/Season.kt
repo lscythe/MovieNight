@@ -5,6 +5,8 @@ data class Season(
     val seasonNumber: Int,
 )
 
+typealias Seasons = List<Season>
+
 data class SeasonDetail(
     val id: Int,
     val name: String,
