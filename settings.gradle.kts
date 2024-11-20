@@ -37,4 +37,11 @@ include(
         ":core:ui"
     )
 )
+include(":model")
+include(
+    listOf(
+        ":domain:favorite",
+        ":domain:tmdb"
+    )
+)
  
