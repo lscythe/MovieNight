@@ -20,3 +20,4 @@ local.properties
 **/bin
 .kotlin
 secrets.properties
+**/.attach_**
