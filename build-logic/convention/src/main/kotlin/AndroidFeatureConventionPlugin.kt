@@ -24,6 +24,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         dependencies {
             implementation(project(":core:designsystem"))
             implementation(project(":core:ui"))
+            implementation(project(":core:resource"))
 
             implementation(libs.library("androidx.hilt.navigation.compose"))
             implementation(libs.library("androidx.navigation.compose"))

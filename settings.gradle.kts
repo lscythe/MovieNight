@@ -33,7 +33,7 @@ include(
         ":core:datastore",
         ":core:designsystem",
         ":core:network",
-        ":core:resources",
+        ":core:resource",
         ":core:ui"
     )
 )
