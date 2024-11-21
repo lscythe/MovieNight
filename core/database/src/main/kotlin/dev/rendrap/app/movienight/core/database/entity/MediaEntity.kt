@@ -5,6 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import dev.rendrap.app.movienight.model.MediaType
 import kotlinx.datetime.Instant
+import kotlinx.datetime.LocalDate
 
 @Entity(
     tableName = "medias",
@@ -19,13 +20,15 @@ import kotlinx.datetime.Instant
 )
 data class MediaEntity(
     @PrimaryKey
-    val mediaId: Long,
+    val id: Long,
     val title: String,
+    val originalTitle: String,
     val poster: String,
     val genres: String,
     val rating: Double,
     val type: MediaType,
     val adult: Boolean,
-    val releaseDate: Instant,
+    val releaseDate: LocalDate? = null,
+    val firstAirDate: LocalDate? = null,
     val playlistId: Int
 )

@@ -14,13 +14,13 @@ import dev.rendrap.app.movienight.core.database.entity.PlaylistEntity
 @Dao
 interface PlaylistDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsertPlaylist(playlist: PlaylistEntity)
+    suspend fun insertPlaylist(playlist: PlaylistEntity)
 
     @Delete
     suspend fun deletePlaylist(vararg playlist: PlaylistEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsertMedia(media: MediaEntity)
+    suspend fun insertMedia(media: MediaEntity)
 
     @Delete
     suspend fun deleteMedia(vararg media: MediaEntity)

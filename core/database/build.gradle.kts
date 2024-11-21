@@ -24,7 +24,7 @@ room {
 
 dependencies {
     implementation(projects.core.common)
-//    implementation(projects.model)
+    implementation(projects.model)
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.paging)

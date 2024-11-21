@@ -7,7 +7,7 @@ import kotlinx.datetime.Instant
 @Entity(tableName = "playlist")
 data class PlaylistEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int? = null,
     val name: String,
     val createdAt: Instant
 )

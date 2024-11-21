@@ -13,4 +13,8 @@ internal object DatabaseDaoModule {
     @Provides
     @Singleton
     fun provideFavoriteDao(db: MovieNightDatabase) = db.favoriteDao()
+
+    @Provides
+    @Singleton
+    fun providePlaylistDao(db: MovieNightDatabase) = db.playlistDao()
 }
