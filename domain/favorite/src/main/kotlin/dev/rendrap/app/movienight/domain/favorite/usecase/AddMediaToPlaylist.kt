@@ -7,5 +7,5 @@ import javax.inject.Singleton
 
 @Singleton
 class AddMediaToPlaylist @Inject constructor(private val repo: FavoriteRepository) {
-    suspend operator fun invoke(media: Media) = repo.addMediaToPlaylist(media)
+    suspend operator fun invoke(media: Media, playlistId: Int) = repo.addMediaToPlaylist(media, playlistId)
 }

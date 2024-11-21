@@ -7,5 +7,6 @@ import javax.inject.Singleton
 
 @Singleton
 class DeleteMedia @Inject constructor(private val repo: FavoriteRepository) {
-    suspend operator fun invoke(vararg media: Media) = repo.deleteMedia(*media)
+    suspend operator fun invoke(vararg media: Media, playlistId: Int) =
+        repo.deleteMedia(*media, playlistId = playlistId)
 }
