@@ -40,6 +40,12 @@ include(
 include(":model")
 include(
     listOf(
+        ":data:favorite",
+        ":data:tmdb"
+    )
+)
+include(
+    listOf(
         ":domain:favorite",
         ":domain:tmdb"
     )

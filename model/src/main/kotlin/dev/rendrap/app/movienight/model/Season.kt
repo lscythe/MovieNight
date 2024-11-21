@@ -8,10 +8,5 @@ data class Season(
 typealias Seasons = List<Season>
 
 data class SeasonDetail(
-    val id: Long,
-    val name: String,
-    val airDate: String,
-    val image: String,
-    val episodeNumber: Int,
-    val runtime: Int,
+    val episode: Episodes
 )

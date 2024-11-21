@@ -1,6 +1,7 @@
 package dev.rendrap.app.movienight.core.network
 
 import dev.rendrap.app.movienight.core.common.extension.isValidUrl
+import dev.rendrap.app.movienight.core.common.utils.Constants.EMPTY_STRING
 import dev.rendrap.app.movienight.core.network.utils.NetworkConfig.CONNECT_TIMEOUT_MILLIS
 import dev.rendrap.app.movienight.core.network.utils.NetworkConfig.READ_TIMEOUT_MILLIS
 import dev.rendrap.app.movienight.core.network.utils.NetworkConfig.REQUEST_TIMEOUT_MILLIS
@@ -26,10 +27,13 @@ import java.util.concurrent.TimeUnit
 class KtorClient {
 
     class Builder {
-        var baseUrl: String = ""
+        var baseUrl: String = EMPTY_STRING
             private set
 
         val interceptors: MutableList<Interceptor> = mutableListOf()
+
+        var apiKey: Pair<String, String>? = null
+            private set
 
         var cacheEnable: Boolean = false
             private set
@@ -53,6 +57,10 @@ class KtorClient {
         fun setBaseUrl(baseUrl: String) = apply {
             require(baseUrl.isValidUrl()) { "Invalid URL: $baseUrl" }
             this.baseUrl = baseUrl
+        }
+
+        fun addApiKey(value: Pair<String, String>) = apply {
+            this.apiKey = value
         }
 
         fun setTimeout(
@@ -102,6 +110,11 @@ class KtorClient {
             }
             defaultRequest {
                 url(baseUrl)
+                url {
+                    apiKey?.let {
+                        parameters.append(it.first, it.second)
+                    }
+                }
             }
             install(ContentNegotiation) {
                 json(jsonSerialization())

@@ -11,5 +11,7 @@ data class CreditDetail(
     val originalName: String,
     val character: String,
     val avatar: String,
-    val job: String
+    val job: String,
+    val title: String,
+    val poster: String
 )

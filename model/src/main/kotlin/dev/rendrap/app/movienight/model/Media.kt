@@ -7,7 +7,7 @@ data class Media(
     val overview: String,
     val rating: Double,
     val poster: String,
-    val genres: String,
+    val genres: List<String>,
     val adult: Boolean,
     val type: MediaType,
     val firstAirDate: String,

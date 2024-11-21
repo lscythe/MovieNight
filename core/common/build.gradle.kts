@@ -9,3 +9,7 @@ plugins {
 android {
     namespace = namespace("common")
 }
+
+dependencies {
+    implementation(libs.kotlin.stdlib)
+}

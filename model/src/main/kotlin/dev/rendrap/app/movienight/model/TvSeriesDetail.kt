@@ -5,13 +5,12 @@ data class TvSeriesDetail(
     val adult: Boolean,
     val name: String,
     val originalName: String,
-    val genres: String,
+    val genres: List<String>,
     val homepage: String,
     val firstAirDate: String,
     val poster: String,
     val rating: Double,
     val ratingCount: Int,
-    val network: String,
     val originCountry: List<String>,
     val seasons: Seasons
 )

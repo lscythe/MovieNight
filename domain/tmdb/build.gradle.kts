@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = namespace("domain.jsonplaceholder")
+    namespace = namespace("domain.tmdb")
 }
 
 dependencies {
