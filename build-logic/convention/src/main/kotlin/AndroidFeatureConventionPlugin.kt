@@ -11,9 +11,9 @@ import org.gradle.kotlin.dsl.dependencies
 class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         pluginManager.apply {
-            apply("assignment.android.library")
-            apply("assignment.android.library.compose")
-            apply("assignment.hilt")
+            apply("movienight.android.library")
+            apply("movienight.android.library.compose")
+            apply("movienight.hilt")
             apply("org.jetbrains.kotlin.plugin.serialization")
         }
 
@@ -22,9 +22,11 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         }
 
         dependencies {
+            implementation(project(":core:common"))
             implementation(project(":core:designsystem"))
-            implementation(project(":core:ui"))
             implementation(project(":core:resource"))
+            implementation(project(":core:ui"))
+            implementation(project(":model"))
 
             implementation(libs.library("androidx.hilt.navigation.compose"))
             implementation(libs.library("androidx.navigation.compose"))

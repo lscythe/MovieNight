@@ -41,13 +41,23 @@ include(":model", ":navigation")
 include(
     listOf(
         ":data:favorite",
-        ":data:tmdb"
+        ":data:setting",
+        ":data:tmdb",
     )
 )
 include(
     listOf(
         ":domain:favorite",
-        ":domain:tmdb"
+        ":domain:setting",
+        ":domain:tmdb",
     )
+)
+include(
+    ":feature:catalog",
+    ":feature:detail",
+    ":feature:discover",
+    ":feature:player",
+    ":feature:saved",
+    ":feature:setting",
 )
  
