@@ -2,7 +2,6 @@ package dev.rendrap.app.movienight.domain.favorite
 
 import dev.rendrap.app.movienight.core.common.utils.Constants.TEN
 import dev.rendrap.app.movienight.domain.favorite.repository.FavoriteRepository
-import dev.rendrap.app.movienight.model.Media
 import javax.inject.Inject
 import javax.inject.Singleton
 
