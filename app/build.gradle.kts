@@ -55,6 +55,11 @@ android {
 
 
 dependencies {
+    implementation(projects.core.common)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.network)
+    implementation(projects.navigation)
+
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.core.ktx)

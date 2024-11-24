@@ -37,7 +37,7 @@ include(
         ":core:ui"
     )
 )
-include(":model")
+include(":model", ":navigation")
 include(
     listOf(
         ":data:favorite",

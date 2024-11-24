@@ -24,7 +24,7 @@ dependencies {
     api(libs.okhttp)
     api(libs.okhttp.logging.interceptor)
 
-    implementation(libs.coil)
+    api(libs.coil)
 
     implementation(libs.kotlinx.serialization.json)
 
