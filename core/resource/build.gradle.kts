@@ -15,6 +15,8 @@ ksp {
 }
 
 dependencies {
+    implementation(projects.core.common)
+
     api(libs.androidx.compose.material.icon.extended)
     api(libs.composeicons.octicons)
 
