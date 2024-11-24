@@ -10,5 +10,6 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.common)
     implementation(projects.model)
 }

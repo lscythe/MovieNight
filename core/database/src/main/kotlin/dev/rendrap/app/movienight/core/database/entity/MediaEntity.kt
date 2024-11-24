@@ -16,7 +16,7 @@ import kotlinx.datetime.LocalDate
             childColumns = ["playlistId"],
             onDelete = ForeignKey.CASCADE
         )
-    ]
+    ],
 )
 data class MediaEntity(
     @PrimaryKey

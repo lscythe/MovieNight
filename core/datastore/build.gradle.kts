@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = namespace("datastore")
+    namespace = namespace("core.datastore")
 }
 
 dependencies {

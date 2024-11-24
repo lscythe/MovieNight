@@ -6,8 +6,10 @@ object Constants {
     const val DOT = "."
     const val ZERO_DOUBLE = 0.0
     const val ZERO_LONG = 0L
-    const val ZERO_INT = 0
+    const val ZERO_FLOAT = 0f
+    const val ZERO = 0
     const val ONE = 1
+    const val TWO = 2
     const val ONE_LONG = 1L
     const val TEN = 10
 

@@ -31,8 +31,15 @@
             <option value="$PROJECT_DIR$/core/datastore" />
             <option value="$PROJECT_DIR$/core/designsystem" />
             <option value="$PROJECT_DIR$/core/network" />
-            <option value="$PROJECT_DIR$/core/resources" />
+            <option value="$PROJECT_DIR$/core/resource" />
             <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/favorite" />
+            <option value="$PROJECT_DIR$/data/tmdb" />
+            <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/favorite" />
+            <option value="$PROJECT_DIR$/domain/tmdb" />
+            <option value="$PROJECT_DIR$/model" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

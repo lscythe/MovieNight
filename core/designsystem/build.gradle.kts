@@ -6,10 +6,11 @@ plugins {
 }
 
 android {
-    namespace = namespace("designsystem")
+    namespace = namespace("core.designsystem")
 }
 
 dependencies {
+    implementation(projects.core.common)
     api(projects.core.resource)
 
     implementation(libs.androidx.core.ktx)

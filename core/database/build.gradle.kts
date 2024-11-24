@@ -11,7 +11,7 @@ android {
     defaultConfig {
         consumerProguardFiles("consumer-proguard-rules.pro")
     }
-    namespace = namespace("database")
+    namespace = namespace("core.database")
 }
 
 ksp {

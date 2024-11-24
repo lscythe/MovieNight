@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = namespace("network")
+    namespace = namespace("core.network")
 
     buildFeatures {
         buildConfig = true

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = namespace("ui")
+    namespace = namespace("core.ui")
 }
 
 dependencies {

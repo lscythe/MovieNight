@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = namespace("resource")
+    namespace = namespace("core.resource")
 }
 
 ksp {
