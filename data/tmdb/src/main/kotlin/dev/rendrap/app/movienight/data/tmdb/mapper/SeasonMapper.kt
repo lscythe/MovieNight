@@ -1,5 +1,6 @@
 package dev.rendrap.app.movienight.data.tmdb.mapper
 
+import dev.rendrap.app.movienight.core.common.extension.orZero
 import dev.rendrap.app.movienight.data.tmdb.dto.response.EpisodeResponse
 import dev.rendrap.app.movienight.data.tmdb.dto.response.SeasonDetailResponse
 import dev.rendrap.app.movienight.data.tmdb.dto.response.SeasonResponse
@@ -13,14 +14,14 @@ fun SeasonResponse.toModel() = Season(
 )
 
 fun SeasonDetailResponse.toModel() = SeasonDetail(
-    episode = episodes.map { it.toModel() }
+    episode = episodes.orEmpty().map { it.toModel() }
 )
 
 fun EpisodeResponse.toModel() = Episode(
-    airDate = airDate,
-    episodeNumber = episodeNumber,
-    episodeType = episodeType,
-    name = name,
-    runTime = runtime,
-    stillPath = stillPath
+    airDate = airDate.orEmpty(),
+    episodeNumber = episodeNumber.orZero(),
+    episodeType = episodeType.orEmpty(),
+    name = name.orEmpty(),
+    runTime = runtime.orZero(),
+    stillPath = stillPath.orEmpty()
 )

@@ -12,7 +12,6 @@ android {
 dependencies {
     implementation(projects.core.designsystem)
 
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil)
     implementation(libs.coil.compose)
 }

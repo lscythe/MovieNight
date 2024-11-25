@@ -57,4 +57,7 @@ internal val EnUsStrings = Strings(
     saveChanges = "Save Changes",
     takeAPhoto = "Take a Photo",
     chooseFromGallery = "Choose From Gallery",
+    noInternetConnection = "⚠\uFE0F You aren’t connected to the internet",
+    airingToday = "Airing Today",
+    onTheAir = "On the Air",
 )

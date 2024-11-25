@@ -35,11 +35,18 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/favorite" />
+            <option value="$PROJECT_DIR$/data/setting" />
             <option value="$PROJECT_DIR$/data/tmdb" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/favorite" />
+            <option value="$PROJECT_DIR$/domain/setting" />
             <option value="$PROJECT_DIR$/domain/tmdb" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/detail" />
+            <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/feature/player" />
             <option value="$PROJECT_DIR$/model" />
+            <option value="$PROJECT_DIR$/navigation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

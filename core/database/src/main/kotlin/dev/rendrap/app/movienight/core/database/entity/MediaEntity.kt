@@ -2,9 +2,9 @@ package dev.rendrap.app.movienight.core.database.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import dev.rendrap.app.movienight.model.MediaType
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 
 @Entity(
@@ -17,6 +17,7 @@ import kotlinx.datetime.LocalDate
             onDelete = ForeignKey.CASCADE
         )
     ],
+    indices = [Index(value = ["playlistId"], unique = true)]
 )
 data class MediaEntity(
     @PrimaryKey

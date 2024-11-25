@@ -1,6 +1,7 @@
 package dev.rendrap.app.movienight.core.network.utils
 
 import dev.rendrap.app.movienight.core.common.Result
+import dev.rendrap.app.movienight.core.network.BuildConfig
 import dev.rendrap.app.movienight.core.network.model.ApiResponse
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
@@ -17,20 +18,24 @@ suspend inline fun <reified T> safeRequest(
 ): ApiResponse<T> = try {
     ApiResponse.Success(block().body())
 } catch (exception: ClientRequestException) {
+    if (BuildConfig.DEBUG) throw exception
     ApiResponse.Error(
         code = exception.response.status.value,
         throwable = exception,
     )
 } catch (exception: ServerResponseException) {
+    if (BuildConfig.DEBUG) throw exception
     ApiResponse.Error(
         code = exception.response.status.value,
         throwable = exception,
     )
 } catch (exception: SerializationException) {
+    if (BuildConfig.DEBUG) throw exception
     ApiResponse.Error(
         throwable = Exception("Something went wrong while parsing the response"),
     )
 } catch (ex: Exception) {
+    if (BuildConfig.DEBUG) throw ex
     ApiResponse.Error(
         throwable = ex
     )
@@ -39,7 +44,6 @@ suspend inline fun <reified T> safeRequest(
 fun HttpMessageBuilder.defaultContentType() = contentType(ContentType.Application.Json)
 
 fun <T> resultFlow(block: suspend () -> ApiResponse<T>) = flow {
-    emit(Result.Loading())
     val result = block()
     emit(
         when (result) {

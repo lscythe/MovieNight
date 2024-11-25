@@ -11,6 +11,8 @@ android {
 
 dependencies {
     implementation(projects.core.common)
+    implementation(projects.feature.home)
+    implementation(projects.model)
 
     implementation(libs.androidx.navigation.compose)
 }

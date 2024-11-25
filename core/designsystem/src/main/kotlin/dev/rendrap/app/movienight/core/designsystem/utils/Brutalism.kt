@@ -27,9 +27,10 @@ import dev.rendrap.app.movienight.core.designsystem.theme.MVOffset
 import dev.rendrap.app.movienight.core.designsystem.theme.MVRadius
 import dev.rendrap.app.movienight.core.designsystem.theme.MVShape
 
+@Composable
 fun Modifier.brutalism(
-    backgroundColor: Color = Color.Unspecified,
-    shadowColor: Color = Color.Unspecified,
+    backgroundColor: Color = MaterialTheme.colorScheme.background,
+    shadowColor: Color = MaterialTheme.colorScheme.onBackground,
     offset: Offset = MVOffset.Medium,
     borderWidth: Dp = 2.dp,
     borderRadius: Dp = MVRadius.ExtraSmall,

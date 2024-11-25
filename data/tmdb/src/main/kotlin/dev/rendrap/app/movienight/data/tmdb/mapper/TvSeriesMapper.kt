@@ -1,5 +1,7 @@
 package dev.rendrap.app.movienight.data.tmdb.mapper
 
+import dev.rendrap.app.movienight.core.common.extension.orFalse
+import dev.rendrap.app.movienight.core.common.extension.orZero
 import dev.rendrap.app.movienight.core.common.utils.Constants.EMPTY_STRING
 import dev.rendrap.app.movienight.data.tmdb.dto.response.BaseResponses
 import dev.rendrap.app.movienight.data.tmdb.dto.response.TvSeriesDetailResponse
@@ -13,30 +15,30 @@ fun BaseResponses<TvSeriesResponse>.toModel() = this.results.map {
 }
 
 fun TvSeriesResponse.toModel() = Media(
-    id = id,
-    name = name,
-    originalName = originalName,
-    overview = overview,
-    rating = voteAverage,
-    poster = posterPath,
-    genres = genreIds.map { it.toTvGenre() },
-    adult = adult,
+    id = id.orZero(),
+    name = name.orEmpty(),
+    originalName = originalName.orEmpty(),
+    overview = overview.orEmpty(),
+    rating = voteAverage.orZero(),
+    poster = posterPath.orEmpty(),
+    genres = genreIds.orEmpty().map { it.toTvGenre() },
+    adult = adult.orFalse(),
     type = MediaType.TV_SERIES,
-    firstAirDate = firstAirDate,
+    firstAirDate = firstAirDate.orEmpty(),
     releaseDate = EMPTY_STRING
 )
 
 fun TvSeriesDetailResponse.toModel() = TvSeriesDetail(
-    id = id,
-    adult = adult,
-    name = name,
-    originalName = originalName,
-    genres = genres.map { it.name },
+    id = id.orZero(),
+    adult = adult.orFalse(),
+    name = name.orEmpty(),
+    originalName = originalName.orEmpty(),
+    genres = genres.orEmpty().map { it.name.orEmpty() },
     homepage = homepage.orEmpty(),
-    firstAirDate = firstAirDate,
-    poster = posterPath,
-    rating = voteAverage,
-    ratingCount = voteCount,
-    originCountry = originCountry,
-    seasons = seasons.map { it.toModel() }
+    firstAirDate = firstAirDate.orEmpty(),
+    poster = posterPath.orEmpty(),
+    rating = voteAverage.orZero(),
+    ratingCount = voteCount.orZero(),
+    originCountry = originCountry.orEmpty(),
+    seasons = seasons.orEmpty().map { it.toModel() }
 )

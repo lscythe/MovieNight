@@ -56,7 +56,7 @@ class TMDBRemoteDataSource @Inject constructor(
                 MovieType.TOP_RATED -> TOP_RATED
                 MovieType.UPCOMING -> UPCOMING
             }
-            client.get("$MOVIE$url")
+            client.get("$MOVIE/$url")
         }
 
     suspend fun getMovieDetail(
@@ -69,7 +69,7 @@ class TMDBRemoteDataSource @Inject constructor(
         param: TrendingParameter
     ): ApiResponse<BaseResponses<TrendingResponse>> = safeRequest {
         val url = buildString {
-            append(TRENDING)
+            append("$TRENDING/")
             append(param.type.toMediaUrl())
             append("/${param.timeWindow.name.lowercase()}")
         }
@@ -85,7 +85,7 @@ class TMDBRemoteDataSource @Inject constructor(
             TvType.POPULAR -> POPULAR
             TvType.TOP_RATED -> TOP_RATED
         }
-        client.get("$TV$type")
+        client.get("$TV/$type")
     }
 
     suspend fun getTvSeriesDetail(

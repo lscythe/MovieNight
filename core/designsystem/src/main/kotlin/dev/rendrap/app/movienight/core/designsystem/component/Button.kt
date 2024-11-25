@@ -68,7 +68,7 @@ fun MVIconButton(
         Icon(
             imageVector = icon,
             contentDescription = contentDescription,
-            modifier = modifier.align(Alignment.Center),
+            modifier = modifier.align(Alignment.Center).size(IconButtonSize),
             tint = tint,
         )
     }
@@ -93,7 +93,7 @@ fun MVIconButton(
         Icon(
             bitmap = bitmap,
             contentDescription = contentDescription,
-            modifier = modifier.align(Alignment.Center),
+            modifier = modifier.align(Alignment.Center).size(IconButtonSize),
             tint = tint,
         )
     }
@@ -118,7 +118,7 @@ fun MVIconButton(
         Icon(
             painter = painter,
             contentDescription = contentDescription,
-            modifier = modifier.align(Alignment.Center),
+            modifier = modifier.align(Alignment.Center).size(IconButtonSize),
             tint = tint,
         )
     }
@@ -144,6 +144,8 @@ private fun IconButtonContent(
         content()
     }
 }
+
+private val IconButtonSize = 24.dp
 
 @ThemePreviews
 @Composable

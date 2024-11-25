@@ -57,4 +57,7 @@ internal val InIdStrings = Strings(
     saveChanges = "Simpan Perubahan",
     takeAPhoto = "Ambil Foto",
     chooseFromGallery = "Pilih dari Galeri",
+    noInternetConnection = "⚠\uFE0F Anda tidak terhubung ke internet.",
+    airingToday = "Ditayangkan Hari Ini",
+    onTheAir = "Sedang Tayang",
 )

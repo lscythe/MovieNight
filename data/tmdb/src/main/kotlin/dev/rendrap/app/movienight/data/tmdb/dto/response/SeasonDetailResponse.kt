@@ -7,35 +7,35 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SeasonDetailResponse(
     @SerialName("episodes")
-    val episodes: List<EpisodeResponse>
+    val episodes: List<EpisodeResponse>? = null
 )
 
 @Serializable
 data class EpisodeResponse(
     @SerialName("air_date")
-    val airDate: String,
+    val airDate: String? = null,
     @SerialName("episode_number")
-    val episodeNumber: Int,
+    val episodeNumber: Int? = null,
     @SerialName("episode_type")
-    val episodeType: String,
+    val episodeType: String? = null,
     @SerialName("id")
-    val id: Int,
+    val id: Int? = null,
     @SerialName("name")
-    val name: String,
+    val name: String? = null,
     @SerialName("overview")
-    val overview: String,
+    val overview: String? = null,
     @SerialName("production_code")
-    val productionCode: String,
+    val productionCode: String? = null,
     @SerialName("runtime")
-    val runtime: Int,
+    val runtime: Int? = null,
     @SerialName("season_number")
-    val seasonNumber: Int,
+    val seasonNumber: Int? = null,
     @SerialName("show_id")
-    val showId: Int,
+    val showId: Int? = null,
     @SerialName("still_path")
-    val stillPath: String,
+    val stillPath: String? = null,
     @SerialName("vote_average")
-    val voteAverage: Int,
+    val voteAverage: Int? = null,
     @SerialName("vote_count")
-    val voteCount: Int
+    val voteCount: Int? = null
 )

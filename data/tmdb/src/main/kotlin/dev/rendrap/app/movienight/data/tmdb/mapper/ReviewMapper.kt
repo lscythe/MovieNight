@@ -10,9 +10,9 @@ fun BaseResponses<ReviewResponse>.toModel() = this.results.map {
 }
 
 fun ReviewResponse.toModel() = Review(
-    username = authorDetails.username,
-    avatar = authorDetails.avatarPath.orEmpty(),
-    date = createdAt,
-    content = content,
-    rating = authorDetails.rating.orZero()
+    username = authorDetails?.username.orEmpty(),
+    avatar = authorDetails?.avatarPath.orEmpty(),
+    date = createdAt.orEmpty(),
+    content = content.orEmpty(),
+    rating = authorDetails?.rating.orZero()
 )

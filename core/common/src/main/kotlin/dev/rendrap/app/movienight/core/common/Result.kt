@@ -6,7 +6,6 @@ import kotlin.contracts.contract
 
 
 sealed class Result<T> {
-    data class Loading<T>(val data: T? = null) : Result<T>()
     data class Success<T>(val data: T) : Result<T>()
     data class Failure<T>(val exception: Throwable) : Result<T>()
 }
@@ -19,6 +18,5 @@ inline fun <R : Any, T> Result<T>.map(transform: (value: T) -> R): Result<R> {
     return when (this) {
         is Result.Success -> Result.Success(transform(data))
         is Result.Failure -> Result.Failure(exception)
-        is Result.Loading -> Result.Loading()
     }
 }

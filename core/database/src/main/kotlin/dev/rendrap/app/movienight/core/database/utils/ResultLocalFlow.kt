@@ -4,7 +4,6 @@ import dev.rendrap.app.movienight.core.common.Result
 import kotlinx.coroutines.flow.flow
 
 fun <T> resultLocalFlow(block: suspend () -> T) = flow {
-    emit(Result.Loading())
     try {
         emit(Result.Success(block()))
     } catch (ex: Exception) {

@@ -7,6 +7,8 @@ data class Strings(
     val nowPlaying: String,
     val topRated: String,
     val upcoming: String,
+    val onTheAir: String,
+    val airingToday: String,
     val trending: String,
     val favorite: String,
     val discover: String,
@@ -51,4 +53,5 @@ data class Strings(
     val saveChanges: String,
     val takeAPhoto: String,
     val chooseFromGallery: String,
+    val noInternetConnection: String,
 )

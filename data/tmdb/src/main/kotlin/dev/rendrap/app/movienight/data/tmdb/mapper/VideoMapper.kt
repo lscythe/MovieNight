@@ -9,8 +9,8 @@ fun BaseResponses<VideoResponse>.toModel() = this.results.map {
 }
 
 fun VideoResponse.toModel() = Video(
-    name = name,
-    key = key,
-    site = site,
-    publishedAt = publishedAt
+    name = name.orEmpty(),
+    key = key.orEmpty(),
+    site = site.orEmpty(),
+    publishedAt = publishedAt.orEmpty()
 )

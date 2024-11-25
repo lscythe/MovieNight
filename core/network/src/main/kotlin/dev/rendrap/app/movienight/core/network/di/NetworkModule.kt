@@ -10,8 +10,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import dev.rendrap.app.movienight.core.network.utils.NetworkConfig.MAX_CHUCKER_CONTENT_LENGTH
 import dev.rendrap.app.movienight.core.network.BuildConfig
+import dev.rendrap.app.movienight.core.network.utils.NetworkConfig.MAX_CHUCKER_CONTENT_LENGTH
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -54,6 +54,7 @@ internal object NetworkModule {
     ): ImageLoader = ImageLoader
         .Builder(context)
         .callFactory(callFactory)
+        .crossfade(true)
         .apply {
             if (BuildConfig.DEBUG) logger(DebugLogger())
         }

@@ -1,8 +1,13 @@
 package dev.rendrap.app.movienight.core.designsystem.component
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -13,6 +18,9 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.selection.selectable
@@ -31,26 +39,29 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarDefaults
-import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.isUnspecified
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import dev.rendrap.app.movienight.core.common.extension.pairOf
+import dev.rendrap.app.movienight.core.common.extension.tripleOf
 import dev.rendrap.app.movienight.core.common.utils.Constants.ZERO
 import dev.rendrap.app.movienight.core.designsystem.extension.ifTrue
 import dev.rendrap.app.movienight.core.designsystem.theme.LocalMVColor
+import dev.rendrap.app.movienight.core.designsystem.theme.MVDimen
 import dev.rendrap.app.movienight.core.designsystem.theme.MVOffset
 import dev.rendrap.app.movienight.core.designsystem.theme.MVRadius
 import dev.rendrap.app.movienight.core.designsystem.theme.MVShape
@@ -67,9 +78,14 @@ fun MVTopAppBar(
     actions: @Composable RowScope.() -> Unit = {},
     expandedHeight: Dp = TopAppBarDefaults.TopAppBarExpandedHeight,
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
-    colors: TopAppBarColors = TopAppBarDefaults.topAppBarColors(),
+    backgroundColor: Color = Color.Unspecified,
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
+    val color = LocalMVColor.current
+    val topBarColor = TopAppBarDefaults.topAppBarColors(
+        containerColor = if (backgroundColor.isUnspecified) color.background else backgroundColor
+    )
+
     CenterAlignedTopAppBar(
         title = { MVTitleLarge(title) },
         navigationIcon = navigationIcon,
@@ -77,21 +93,23 @@ fun MVTopAppBar(
         modifier = modifier,
         windowInsets = windowInsets,
         expandedHeight = expandedHeight,
-        colors = colors,
-        scrollBehavior = scrollBehavior
+        colors = topBarColor,
+        scrollBehavior = scrollBehavior,
     )
 }
 
 @Composable
 fun MVNavigationBar(
     modifier: Modifier = Modifier,
-    containerColor: Color = NavigationBarDefaults.containerColor,
+    containerColor: Color = Color.Unspecified,
     windowInsets: WindowInsets = NavigationBarDefaults.windowInsets,
     content: @Composable RowScope.() -> Unit
 ) {
+    val color = LocalMVColor.current
+    val backgroundColor = if (containerColor.isUnspecified) color.background else containerColor
     Box(
         modifier = modifier.brutalism(
-            backgroundColor = containerColor,
+            backgroundColor = backgroundColor,
             shadowColor = MaterialTheme.colorScheme.onBackground,
             shape = MVShape.ROUNDED,
             borderRadius = MVRadius.Medium,
@@ -117,10 +135,12 @@ fun RowScope.MVNavigationBarItem(
     onClick: () -> Unit,
     icon: ImageVector,
     label: String,
+    backgroundColor: Color = Color.Unspecified,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
     val mvColor = LocalMVColor.current
+    val bgColor = if (backgroundColor.isUnspecified) mvColor.fifth else backgroundColor
     Box(
         modifier
             .selectable(
@@ -131,7 +151,7 @@ fun RowScope.MVNavigationBarItem(
             )
             .ifTrue(selected) {
                 brutalism(
-                    backgroundColor = mvColor.fifth,
+                    backgroundColor = bgColor,
                     shadowColor = MaterialTheme.colorScheme.onBackground,
                     shape = MVShape.ROUNDED,
                     borderRadius = MVRadius.Medium
@@ -143,21 +163,22 @@ fun RowScope.MVNavigationBarItem(
         propagateMinConstraints = true
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxHeight(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Icon(
                 icon,
                 contentDescription = "NavBarItemIcon",
-                tint = MaterialTheme.colorScheme.onBackground
+                tint = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.size(NavigationBarItemIconSize)
             )
             AnimatedVisibility(
                 visible = selected,
             ) {
                 MVHeadlineMedium(
                     text = label,
-                    fontSize = MaterialTheme.typography.labelMedium.fontSize
+                    fontSize = MaterialTheme.typography.titleSmall.fontSize
                 )
             }
         }
@@ -167,11 +188,14 @@ fun RowScope.MVNavigationBarItem(
 @Composable
 fun MVTabRow(
     modifier: Modifier = Modifier,
+    containerColor: Color = Color.Unspecified,
     content: @Composable RowScope.() -> Unit
 ) {
+    val color = LocalMVColor.current
+    val backgroundColor = if (containerColor.isUnspecified) color.background else containerColor
     Box(
         modifier = modifier.brutalism(
-            backgroundColor = MaterialTheme.colorScheme.background,
+            backgroundColor = backgroundColor,
             shadowColor = MaterialTheme.colorScheme.onBackground,
             shape = MVShape.ROUNDED,
             borderRadius = MVRadius.Medium,
@@ -231,7 +255,59 @@ fun RowScope.MVTab(
     }
 }
 
-private val NavigationBarContainerHeight = 80.dp
+@Composable
+fun MVScaffold(
+    modifier: Modifier = Modifier,
+    topAppBar: @Composable () -> Unit = {},
+    bottomNavBar: @Composable () -> Unit = {},
+    showTopBar: Boolean = true,
+    showBottomNavBar: Boolean = true,
+    snackbarHost: @Composable () -> Unit = {},
+    containerColor: Color = Color.Unspecified,
+    content: @Composable BoxScope.() -> Unit,
+) {
+    val color = LocalMVColor.current
+    val backgroundColor = if (containerColor.isUnspecified) color.background else containerColor
+    Scaffold(
+        modifier = modifier.navigationBarsPadding(),
+        topBar = {
+            AnimatedVisibility(
+                visible = showTopBar,
+                enter = fadeIn() + slideInVertically(),
+                exit = fadeOut() + slideOutVertically(targetOffsetY = { it / 2 }),
+            ) {
+                topAppBar()
+            }
+        },
+        snackbarHost = snackbarHost,
+        containerColor = backgroundColor
+    ) { innerPadding ->
+        Box(
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            Box {
+                content()
+            }
+            AnimatedVisibility(
+                visible = showBottomNavBar,
+                enter = fadeIn() + slideInVertically(),
+                exit = fadeOut() + slideOutVertically(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = MVDimen.Medium)
+                    .padding(horizontal = MVDimen.Medium),
+            ) {
+                bottomNavBar()
+            }
+        }
+    }
+}
+
+private val NavigationBarItemIconSize = 24.dp
+val NavigationBarContainerHeight = 76.dp
 private val TabRowContainerHeight = 48.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -256,21 +332,24 @@ private fun MVTopAppbarPreview() {
 @ThemePreviews
 @Composable
 private fun MVNavigationBarPreview() {
-    val navBarItems = listOf(
-        pairOf(Icons.Filled.Language, "Discover"),
-        pairOf(Icons.Filled.Search, "Search"),
-        pairOf(Icons.Filled.Bookmarks, "Saved"),
-        pairOf(Icons.Filled.Settings, "Settings")
-    )
-    var currentIndex by remember { mutableIntStateOf(ZERO) }
     PreviewWrapper {
+        val color = LocalMVColor.current
+        val navBarItems = listOf(
+            tripleOf(Icons.Filled.Language, "Discover", color.first),
+            tripleOf(Icons.Filled.Search, "Search", color.second),
+            tripleOf(Icons.Filled.Bookmarks, "Saved", color.third),
+            tripleOf(Icons.Filled.Settings, "Settings", color.fourth)
+        )
+        var currentIndex by remember { mutableIntStateOf(ZERO) }
+
         MVNavigationBar {
-            navBarItems.forEachIndexed { index, pair ->
+            navBarItems.forEachIndexed { index, triple ->
                 MVNavigationBarItem(
                     selected = currentIndex == index,
                     onClick = { currentIndex = index },
-                    icon = pair.first,
-                    label = pair.second
+                    icon = triple.first,
+                    label = triple.second,
+                    backgroundColor = triple.third
                 )
             }
         }
@@ -307,6 +386,57 @@ private fun MVTabRowPreview() {
                     currentIndex = index
                 }
             }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@ThemePreviews
+@Composable
+private fun MVScaffoldPreview() {
+    PreviewWrapper {
+        val color = LocalMVColor.current
+        val navBarItems = listOf(
+            tripleOf(Icons.Filled.Language, "Discover", color.first),
+            tripleOf(Icons.Filled.Search, "Search", color.second),
+            tripleOf(Icons.Filled.Bookmarks, "Saved", color.third),
+            tripleOf(Icons.Filled.Settings, "Settings", color.fourth)
+        )
+        var currentIndex by remember { mutableIntStateOf(ZERO) }
+        var bottomBarVisible by remember { mutableStateOf(true) }
+
+        MVScaffold(
+            showBottomNavBar = bottomBarVisible,
+            bottomNavBar = {
+                MVNavigationBar {
+                    navBarItems.forEachIndexed { index, triple ->
+                        MVNavigationBarItem(
+                            selected = currentIndex == index,
+                            onClick = { currentIndex = index },
+                            icon = triple.first,
+                            label = triple.second,
+                            backgroundColor = triple.third
+                        )
+                    }
+                }
+            },
+            topAppBar = {
+                MVTopAppBar(
+                    title = "MV TopAppBar",
+                    navigationIcon = {
+                        MVIconButton(icon = Icons.AutoMirrored.Filled.ArrowBack) {
+                            bottomBarVisible = !bottomBarVisible
+                        }
+                    },
+                    actions = {
+                        MVIconButton(icon = Icons.Filled.Favorite) { }
+                        Spacer(Modifier.width(6.dp))
+                        MVIconButton(icon = Icons.Filled.Share) { }
+                    }
+                )
+            }
+        ) {
+            MVTitleMedium("Scaffold")
         }
     }
 }

@@ -19,4 +19,20 @@ enum class MediaType {
     MOVIES
 }
 
+enum class MovieSortBy {
+    UPCOMING,
+    POPULAR,
+    TOP_RATED,
+    NOW_PLAYING,
+    TRENDING
+}
+
+enum class TVSortBy {
+    POPULAR,
+    TOP_RATED,
+    ON_THE_AIR,
+    AIRING_TODAY,
+    TRENDING
+}
+
 typealias Medias = List<Media>

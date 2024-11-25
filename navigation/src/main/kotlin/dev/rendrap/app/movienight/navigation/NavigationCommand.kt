@@ -4,6 +4,7 @@ import androidx.navigation.NavOptions
 import kotlin.reflect.KClass
 
 sealed interface NavigationCommand {
+    data object NavigateUp: NavigationCommand
     data object NavigateBack : NavigationCommand
     data object NavigateHome : NavigationCommand
     data class NavigateTo(

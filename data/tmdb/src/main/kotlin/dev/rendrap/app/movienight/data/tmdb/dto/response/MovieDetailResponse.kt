@@ -7,47 +7,47 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MovieDetailResponse(
     @SerialName("adult")
-    val adult: Boolean,
+    val adult: Boolean? = null,
     @SerialName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String? = null,
     @SerialName("budget")
-    val budget: Int,
+    val budget: Int? = null,
     @SerialName("genres")
-    val genres: List<GenreResponse>,
+    val genres: List<GenreResponse>? = null,
     @SerialName("homepage")
     val homepage: String? = null,
     @SerialName("id")
-    val id: Long,
+    val id: Long? = null,
     @SerialName("imdb_id")
-    val imdbId: String,
+    val imdbId: String? = null,
     @SerialName("origin_country")
-    val originCountry: List<String>,
+    val originCountry: List<String>? = null,
     @SerialName("original_language")
-    val originalLanguage: String,
+    val originalLanguage: String? = null,
     @SerialName("original_title")
-    val originalTitle: String,
+    val originalTitle: String? = null,
     @SerialName("overview")
-    val overview: String,
+    val overview: String? = null,
     @SerialName("popularity")
-    val popularity: Double,
+    val popularity: Double? = null,
     @SerialName("poster_path")
-    val posterPath: String,
+    val posterPath: String? = null,
     @SerialName("release_date")
-    val releaseDate: String,
+    val releaseDate: String? = null,
     @SerialName("revenue")
-    val revenue: Int,
+    val revenue: Int? = null,
     @SerialName("runtime")
-    val runtime: Int,
+    val runtime: Int? = null,
     @SerialName("status")
-    val status: String,
+    val status: String? = null,
     @SerialName("tagline")
-    val tagline: String,
+    val tagline: String? = null,
     @SerialName("title")
-    val title: String,
+    val title: String? = null,
     @SerialName("video")
-    val video: Boolean,
+    val video: Boolean? = null,
     @SerialName("vote_average")
-    val voteAverage: Double,
+    val voteAverage: Double? = null,
     @SerialName("vote_count")
-    val voteCount: Long
+    val voteCount: Long? = null
 )

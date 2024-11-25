@@ -1,5 +1,7 @@
 package dev.rendrap.app.movienight.data.tmdb.mapper
 
+import dev.rendrap.app.movienight.core.common.extension.orFalse
+import dev.rendrap.app.movienight.core.common.extension.orZero
 import dev.rendrap.app.movienight.core.common.utils.Constants.EMPTY_STRING
 import dev.rendrap.app.movienight.data.tmdb.dto.response.BaseResponses
 import dev.rendrap.app.movienight.data.tmdb.dto.response.MovieDetailResponse
@@ -14,30 +16,30 @@ internal fun BaseResponses<MovieResponse>.toModel(): Medias = this.results.map {
 }
 
 internal fun MovieResponse.toModel() = Media(
-    id = id,
-    name = title,
-    originalName = originalTitle,
-    overview = overview,
-    rating = voteAverage,
-    poster = posterPath,
-    genres = genreIds.map { it.toMovieGenre() },
-    adult = adult,
+    id = id.orZero(),
+    name = title.orEmpty(),
+    originalName = originalTitle.orEmpty(),
+    overview = overview.orEmpty(),
+    rating = voteAverage.orZero(),
+    poster = posterPath.orEmpty(),
+    genres = genreIds.orEmpty().map { it.toMovieGenre() },
+    adult = adult.orFalse(),
     type = MediaType.MOVIES,
     firstAirDate = EMPTY_STRING,
-    releaseDate = releaseDate
+    releaseDate = releaseDate.orEmpty()
 )
 
 internal fun MovieDetailResponse.toModel() = MovieDetail(
-    id = id,
-    name = title,
-    originalName = originalTitle,
-    genres = genres.map { it.name },
-    originCountry = originCountry,
-    poster = posterPath,
+    id = id.orZero(),
+    name = title.orEmpty(),
+    originalName = originalTitle.orEmpty(),
+    genres = genres.orEmpty().map { it.name.orEmpty() },
+    originCountry = originCountry.orEmpty(),
+    poster = posterPath.orEmpty(),
     homepage = homepage.orEmpty(),
-    overview = overview,
-    popularity = popularity,
-    releaseDate = releaseDate,
-    rating = voteAverage,
-    ratingCount = voteCount
+    overview = overview.orEmpty(),
+    popularity = popularity.orZero(),
+    releaseDate = releaseDate.orEmpty(),
+    rating = voteAverage.orZero(),
+    ratingCount = voteCount.orZero()
 )

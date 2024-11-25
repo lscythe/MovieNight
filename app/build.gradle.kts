@@ -63,6 +63,9 @@ dependencies {
     implementation(projects.data.setting)
     implementation(projects.data.tmdb)
     implementation(projects.domain.setting)
+    implementation(projects.navigation)
+
+    implementation(projects.feature.home)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
@@ -71,6 +74,4 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
-
-    implementation(libs.lyricist)
 }

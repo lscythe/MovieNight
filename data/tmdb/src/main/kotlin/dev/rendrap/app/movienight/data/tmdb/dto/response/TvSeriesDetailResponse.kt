@@ -7,51 +7,51 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class TvSeriesDetailResponse(
     @SerialName("adult")
-    val adult: Boolean,
+    val adult: Boolean? = null,
     @SerialName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String? = null,
     @SerialName("first_air_date")
-    val firstAirDate: String,
+    val firstAirDate: String? = null,
     @SerialName("genres")
-    val genres: List<GenreResponse>,
+    val genres: List<GenreResponse>? = null,
     @SerialName("homepage")
     val homepage: String? = null,
     @SerialName("id")
-    val id: Long,
+    val id: Long? = null,
     @SerialName("in_production")
-    val inProduction: Boolean,
+    val inProduction: Boolean? = null,
     @SerialName("last_air_date")
-    val lastAirDate: String,
+    val lastAirDate: String? = null,
     @SerialName("name")
-    val name: String,
+    val name: String? = null,
     @SerialName("number_of_episodes")
-    val numberOfEpisodes: Int,
+    val numberOfEpisodes: Int? = null,
     @SerialName("number_of_seasons")
-    val numberOfSeasons: Int,
+    val numberOfSeasons: Int? = null,
     @SerialName("origin_country")
-    val originCountry: List<String>,
+    val originCountry: List<String>? = null,
     @SerialName("original_language")
-    val originalLanguage: String,
+    val originalLanguage: String? = null,
     @SerialName("original_name")
-    val originalName: String,
+    val originalName: String? = null,
     @SerialName("overview")
-    val overview: String,
+    val overview: String? = null,
     @SerialName("popularity")
-    val popularity: Double,
+    val popularity: Double? = null,
     @SerialName("poster_path")
-    val posterPath: String,
+    val posterPath: String? = null,
     @SerialName("seasons")
-    val seasons: List<SeasonResponse>,
+    val seasons: List<SeasonResponse>? = null,
     @SerialName("status")
-    val status: String,
+    val status: String? = null,
     @SerialName("tagline")
-    val tagline: String,
+    val tagline: String? = null,
     @SerialName("type")
-    val type: String,
+    val type: String? = null,
     @SerialName("vote_average")
-    val voteAverage: Double,
+    val voteAverage: Double? = null,
     @SerialName("vote_count")
-    val voteCount: Int
+    val voteCount: Int? = null
 )
 
 @Serializable

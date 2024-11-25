@@ -7,19 +7,19 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ReviewResponse(
     @SerialName("author")
-    val author: String,
+    val author: String? = null,
     @SerialName("author_details")
-    val authorDetails: AuthorDetails,
+    val authorDetails: AuthorDetails? = null,
     @SerialName("content")
-    val content: String,
+    val content: String? = null,
     @SerialName("created_at")
-    val createdAt: String,
+    val createdAt: String? = null,
     @SerialName("id")
-    val id: String,
+    val id: String? = null,
     @SerialName("updated_at")
-    val updatedAt: String,
+    val updatedAt: String? = null,
     @SerialName("url")
-    val url: String
+    val url: String? = null
 )
 
 @Serializable

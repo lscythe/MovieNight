@@ -17,15 +17,21 @@ class MainActivityViewModel @Inject constructor(
     getCurrentLanguage: GetCurrentLanguage,
     getCurrentTheme: GetCurrentTheme
 ) : ViewModel() {
-    val uiState: StateFlow<MainActivityUiState> =
-        getCurrentLanguage().combine(getCurrentTheme()) { lang, theme ->
-            val currTheme = Theme.entries.first { it.name == theme }
-            MainActivityUiState.Success(lang, currTheme)
-        }.stateIn(
-            scope = viewModelScope,
-            initialValue = MainActivityUiState.Loading,
-            started = SharingStarted.WhileSubscribed(5_000)
+    val uiState: StateFlow<MainActivityUiState> = combine(
+        getCurrentTheme(),
+        getCurrentLanguage()
+    ) { theme, language ->
+        val currTheme = Theme.entries.first { it.name == theme }
+        MainActivityUiState.Success(
+            language = language,
+            theme = currTheme
         )
+    }.stateIn(
+        scope = viewModelScope,
+        initialValue = MainActivityUiState.Loading,
+        started = SharingStarted.WhileSubscribed(5_000)
+    )
+
 }
 
 sealed interface MainActivityUiState {

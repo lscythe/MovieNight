@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.isUnspecified
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import dev.rendrap.app.movienight.core.designsystem.extension.ifTrue
@@ -44,17 +45,21 @@ import dev.rendrap.app.movienight.core.designsystem.utils.brutalism
 
 @Composable
 fun MVChip(
-    selected: Boolean,
+    selected: Boolean = false,
     label: String,
-    onClick: () -> Unit,
+    onClick: () -> Unit = {},
+    backgroundColor: Color = Color.Unspecified,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
     val mvColor = LocalMVColor.current
+
+    val color = if (backgroundColor.isUnspecified) mvColor.second else backgroundColor
+
     ChipContent(
         selected = selected,
         enabled = enabled,
-        backgroundColor = mvColor.second,
+        backgroundColor = color,
         onClick = onClick,
         modifier = modifier,
     ) {
@@ -198,7 +203,7 @@ private val ChipBorderWidth = 2.dp
 private fun MVChipPreview() {
     PreviewWrapper {
         MVChip(
-            selected = true,
+            selected = false,
             label = "MV Chip",
             onClick = {}
         )
@@ -224,7 +229,7 @@ private fun MVInputChipPreview() {
     PreviewWrapper {
         MVInputChip(
             label = "MV Chip",
-            onClick = {  }
+            onClick = { }
         )
     }
 }

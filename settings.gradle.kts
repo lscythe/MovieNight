@@ -53,11 +53,8 @@ include(
     )
 )
 include(
-    ":feature:catalog",
+    ":feature:home",
     ":feature:detail",
-    ":feature:discover",
     ":feature:player",
-    ":feature:saved",
-    ":feature:setting",
 )
  

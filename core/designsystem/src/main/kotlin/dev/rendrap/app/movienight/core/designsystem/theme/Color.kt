@@ -232,8 +232,8 @@ val SaharaSand = Color(0xFFEAE68E)
 val Hazel = Color(0xFF7F7A18)
 val PeachSchnapps = Color(0xFFFFDAD2)
 val MilanoRed = Color(0xFFBA2100)
-val VistaWhite = Color(0xFFFFF8F4)
-val Acadia = Color(0xFF18120C)
+val VistaWhite = Color(0xFFFCEFE1)
+val Acadia = Color(0xFF140B02)
 
 @Immutable
 data class MVColorTheme(

@@ -12,4 +12,5 @@ android {
 
 dependencies {
     implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlinx.datetime)
 }

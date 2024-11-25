@@ -19,8 +19,7 @@ dependencies {
     implementation(projects.core.common)
 
     api(libs.androidx.compose.material.icon.extended)
-    api(libs.composeicons.octicons)
 
-    implementation(libs.lyricist)
+    api(libs.lyricist)
     ksp(libs.lyricist.processor)
 }
