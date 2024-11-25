@@ -11,7 +11,8 @@ android {
 }
 
 ksp {
-    arg("lyricist.internalVisibility", "true")
+    arg("lyricist.packageName", "dev.rendrap.app.movienight.core.resource")
+    arg("lyricist.moduleName", "resource")
 }
 
 dependencies {

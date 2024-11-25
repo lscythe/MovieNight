@@ -5,7 +5,6 @@ import dev.rendrap.app.movienight.core.common.utils.Theme
 import dev.rendrap.app.movienight.core.datastore.DatastoreManager
 import dev.rendrap.app.movienight.core.datastore.di.PlainDatastore
 import dev.rendrap.app.movienight.data.setting.utils.PreferencesKey.LanguageKey
-import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,11 +14,9 @@ class SettingLocalDataSource @Inject constructor(
 ) {
     suspend fun saveLanguage(value: String) = dsManager.save(value, LanguageKey)
 
-    suspend fun getLanguage() = dsManager.get(LanguageKey, Locales.EN_US).first()
+    fun getLanguage() = dsManager.get(LanguageKey, Locales.EN_US)
 
     suspend fun saveTheme(value: Theme) = dsManager.save(value.name, LanguageKey)
 
-    suspend fun getTheme() = Theme.entries.first {
-        it.name == dsManager.get(LanguageKey, Theme.FOLLOW_SYSTEM.name).first()
-    }
+    fun getTheme() = dsManager.get(LanguageKey, Theme.FOLLOW_SYSTEM.name)
 }

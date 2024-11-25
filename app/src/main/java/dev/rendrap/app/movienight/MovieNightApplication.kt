@@ -9,7 +9,7 @@ import javax.inject.Inject
 @HiltAndroidApp
 class MovieNightApplication : Application(), ImageLoaderFactory {
     @Inject
-    private lateinit var imageLoader: dagger.Lazy<ImageLoader>
+    lateinit var imageLoader: dagger.Lazy<ImageLoader>
 
     override fun newImageLoader(): ImageLoader = imageLoader.get()
 

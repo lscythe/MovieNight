@@ -6,5 +6,5 @@ import javax.inject.Singleton
 
 @Singleton
 class GetCurrentTheme @Inject constructor(private val repo: SettingRepository) {
-    suspend operator fun invoke() = repo.getCurrentTheme()
+    operator fun invoke() = repo.getCurrentTheme()
 }

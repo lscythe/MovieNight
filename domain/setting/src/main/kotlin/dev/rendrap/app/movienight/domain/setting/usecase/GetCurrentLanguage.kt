@@ -6,5 +6,5 @@ import javax.inject.Singleton
 
 @Singleton
 class GetCurrentLanguage @Inject constructor(private val repo: SettingRepository) {
-    suspend operator fun invoke() = repo.getCurrentLanguage()
+    operator fun invoke() = repo.getCurrentLanguage()
 }
