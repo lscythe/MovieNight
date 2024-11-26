@@ -129,7 +129,7 @@ class TMDBRemoteDataSource @Inject constructor(
         safeRequest {
             val url = buildString {
                 append(type.toMediaUrl())
-                append("/$id")
+                append("/$id/")
                 append(VIDEOS)
             }
             client.get(url)

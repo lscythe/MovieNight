@@ -8,6 +8,7 @@ import dev.rendrap.app.movienight.core.resource.icons.mvicon.Cog
 import dev.rendrap.app.movienight.core.resource.icons.mvicon.Image
 import dev.rendrap.app.movienight.core.resource.icons.mvicon.ImageBroken
 import dev.rendrap.app.movienight.core.resource.icons.mvicon.Movie
+import dev.rendrap.app.movienight.core.resource.icons.mvicon.Play
 import dev.rendrap.app.movienight.core.resource.icons.mvicon.Search
 import dev.rendrap.app.movienight.core.resource.icons.mvicon.SearchAlt
 import dev.rendrap.app.movienight.core.resource.icons.mvicon.SearchFolder
@@ -22,7 +23,7 @@ public val MVIcon.AllIcons: ____KtList<ImageVector>
     if (__AllIcons != null) {
       return __AllIcons!!
     }
-    __AllIcons= listOf(Cog, SearchFolder, Search, SearchAlt, Image, ArrowLeft, ChevronRight,
+    __AllIcons= listOf(Cog, SearchFolder, Search, SearchAlt, Play, Image, ArrowLeft, ChevronRight,
         ImageBroken, Archive, Movie)
     return __AllIcons!!
   }

@@ -45,7 +45,7 @@ import dev.rendrap.app.movienight.core.designsystem.utils.brutalism
 
 @Composable
 fun MVChip(
-    selected: Boolean = false,
+    selected: Boolean = true,
     label: String,
     onClick: () -> Unit = {},
     backgroundColor: Color = Color.Unspecified,

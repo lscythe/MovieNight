@@ -2,10 +2,9 @@ package dev.rendrap.app.movienight.feature.home.screen.discover.content
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -18,18 +17,19 @@ import dev.rendrap.app.movienight.core.designsystem.utils.PreviewWrapper
 import dev.rendrap.app.movienight.core.designsystem.utils.ThemePreviews
 import dev.rendrap.app.movienight.core.resource.LocalResourceStrings
 import dev.rendrap.app.movienight.core.ui.MVLoadingOverlay
-import dev.rendrap.app.movienight.feature.home.component.MediaItemWithCategory
+import dev.rendrap.app.movienight.core.ui.MediaItemWithCategory
 import dev.rendrap.app.movienight.feature.home.component.TrendingItem
 import dev.rendrap.app.movienight.feature.home.screen.discover.viewmodel.DiscoverTVUIState
 import dev.rendrap.app.movienight.feature.home.screen.discover.viewmodel.DiscoverTVViewModel
 import dev.rendrap.app.movienight.model.Medias
 import dev.rendrap.app.movienight.model.TVSortBy
-import saschpe.log4k.Log
 
 @Composable
 internal fun DiscoverTVContent(
     modifier: Modifier = Modifier,
-    viewModel: DiscoverTVViewModel = hiltViewModel()
+    viewModel: DiscoverTVViewModel = hiltViewModel(),
+    onShowMoreClick: (type: TVSortBy) -> Unit,
+    onTVClick: (id: Long) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val trending by viewModel.trending.collectAsStateWithLifecycle()
@@ -46,17 +46,15 @@ internal fun DiscoverTVContent(
         TVSortBy.TRENDING to trending,
     )
 
-    Log.debug { tvSeries.toString() }
-
     DiscoverTVContent(
         uiState = uiState,
         tvSeries = tvSeries,
         modifier = modifier,
-        onTVClick = { viewModel.nav.navigateToMovieDetail(it) },
-        onAiringTodayClick = { viewModel.nav.navigateToTVsDetail(TVSortBy.AIRING_TODAY) },
-        onPopularClick = { viewModel.nav.navigateToTVsDetail(TVSortBy.POPULAR) },
-        onTopRatedClick = { viewModel.nav.navigateToTVsDetail(TVSortBy.TOP_RATED) },
-        onTheAirClick = { viewModel.nav.navigateToTVsDetail(TVSortBy.ON_THE_AIR) },
+        onTVClick = { onTVClick(it) },
+        onAiringTodayClick = { onShowMoreClick(TVSortBy.AIRING_TODAY) },
+        onPopularClick = { onShowMoreClick(TVSortBy.POPULAR) },
+        onTopRatedClick = { onShowMoreClick(TVSortBy.TOP_RATED) },
+        onTheAirClick = { onShowMoreClick(TVSortBy.ON_THE_AIR) },
     )
 }
 
@@ -71,55 +69,68 @@ private fun DiscoverTVContent(
     onTheAirClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val scrollState = rememberScrollState()
     val isLoading = uiState is DiscoverTVUIState.Loading
-    Box {
-        Column(
-            modifier
-                .padding(
-                    bottom = NavigationBarContainerHeight + MVDimen.Large
-                )
-                .verticalScroll(scrollState)
+    Box(modifier) {
+        LazyColumn(
+            contentPadding = PaddingValues(bottom = NavigationBarContainerHeight + MVDimen.Large)
         ) {
-            tvSeries[TVSortBy.TRENDING]?.let {
-                TrendingItem(it, onTVClick)
-                SpaceMedium()
+            item {
+                tvSeries[TVSortBy.TRENDING]?.let {
+                    Column {
+                        TrendingItem(it, onTVClick)
+                        SpaceMedium()
+                    }
+                }
             }
-            tvSeries[TVSortBy.AIRING_TODAY]?.let {
-                TVHeadline(
-                    it,
-                    TVSortBy.AIRING_TODAY,
-                    onAiringTodayClick,
-                    onTVClick
-                )
-                SpaceMedium()
+            item {
+                tvSeries[TVSortBy.AIRING_TODAY]?.let {
+                    Column {
+                        TVHeadline(
+                            it,
+                            TVSortBy.AIRING_TODAY,
+                            onAiringTodayClick,
+                            onTVClick
+                        )
+                        SpaceMedium()
+                    }
+                }
             }
 
-            tvSeries[TVSortBy.POPULAR]?.let {
-                TVHeadline(
-                    it,
-                    TVSortBy.POPULAR,
-                    onPopularClick,
-                    onTVClick
-                )
-                SpaceMedium()
+            item {
+                tvSeries[TVSortBy.POPULAR]?.let {
+                    Column {
+                        TVHeadline(
+                            it,
+                            TVSortBy.POPULAR,
+                            onPopularClick,
+                            onTVClick
+                        )
+                        SpaceMedium()
+                    }
+                }
             }
-            tvSeries[TVSortBy.TOP_RATED]?.let {
-                TVHeadline(
-                    it,
-                    TVSortBy.TOP_RATED,
-                    onTopRatedClick,
-                    onTVClick
-                )
-                SpaceMedium()
+            item {
+                tvSeries[TVSortBy.TOP_RATED]?.let {
+                    Column {
+                        TVHeadline(
+                            it,
+                            TVSortBy.TOP_RATED,
+                            onTopRatedClick,
+                            onTVClick
+                        )
+                        SpaceMedium()
+                    }
+                }
             }
-            tvSeries[TVSortBy.ON_THE_AIR]?.let {
-                TVHeadline(
-                    it,
-                    TVSortBy.ON_THE_AIR,
-                    onTheAirClick,
-                    onTVClick
-                )
+            item {
+                tvSeries[TVSortBy.ON_THE_AIR]?.let {
+                    TVHeadline(
+                        it,
+                        TVSortBy.ON_THE_AIR,
+                        onTheAirClick,
+                        onTVClick
+                    )
+                }
             }
         }
         if (isLoading) {

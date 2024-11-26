@@ -2,10 +2,9 @@ package dev.rendrap.app.movienight.feature.home.screen.discover.content
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -18,7 +17,7 @@ import dev.rendrap.app.movienight.core.designsystem.utils.PreviewWrapper
 import dev.rendrap.app.movienight.core.designsystem.utils.ThemePreviews
 import dev.rendrap.app.movienight.core.resource.LocalResourceStrings
 import dev.rendrap.app.movienight.core.ui.MVLoadingOverlay
-import dev.rendrap.app.movienight.feature.home.component.MediaItemWithCategory
+import dev.rendrap.app.movienight.core.ui.MediaItemWithCategory
 import dev.rendrap.app.movienight.feature.home.component.TrendingItem
 import dev.rendrap.app.movienight.feature.home.screen.discover.viewmodel.DiscoverMovieUIState
 import dev.rendrap.app.movienight.feature.home.screen.discover.viewmodel.DiscoverMovieViewModel
@@ -28,7 +27,9 @@ import dev.rendrap.app.movienight.model.MovieSortBy
 @Composable
 internal fun DiscoverMovieContent(
     modifier: Modifier = Modifier,
-    viewModel: DiscoverMovieViewModel = hiltViewModel()
+    viewModel: DiscoverMovieViewModel = hiltViewModel(),
+    onShowMoreClick: (type: MovieSortBy) -> Unit,
+    onMovieClick: (id: Long) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val trending by viewModel.trending.collectAsStateWithLifecycle()
@@ -49,11 +50,11 @@ internal fun DiscoverMovieContent(
         uiState = uiState,
         movies = movies,
         modifier = modifier,
-        onMovieClick = { viewModel.nav.navigateToMovieDetail(it) },
-        onUpcomingClick = { viewModel.nav.navigateToMoviesDetail(MovieSortBy.UPCOMING) },
-        onPopularClick = { viewModel.nav.navigateToMoviesDetail(MovieSortBy.POPULAR) },
-        onTopRatedClick = { viewModel.nav.navigateToMoviesDetail(MovieSortBy.TOP_RATED) },
-        onNowPlayingClick = { viewModel.nav.navigateToMoviesDetail(MovieSortBy.NOW_PLAYING) },
+        onMovieClick = { onMovieClick(it) },
+        onUpcomingClick = { onShowMoreClick(MovieSortBy.UPCOMING) },
+        onPopularClick = { onShowMoreClick(MovieSortBy.POPULAR) },
+        onTopRatedClick = { onShowMoreClick(MovieSortBy.TOP_RATED) },
+        onNowPlayingClick = { onShowMoreClick(MovieSortBy.NOW_PLAYING) },
     )
 }
 
@@ -68,56 +69,69 @@ private fun DiscoverMovieContent(
     onNowPlayingClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val scrollState = rememberScrollState()
     val isLoading = uiState is DiscoverMovieUIState.Loading
-    Box {
-        Column(
-            modifier
-                .padding(
-                    bottom = NavigationBarContainerHeight + MVDimen.Large
-                )
-                .verticalScroll(scrollState)
+    Box(modifier) {
+        LazyColumn(
+            contentPadding = PaddingValues(bottom = NavigationBarContainerHeight + MVDimen.Large),
         ) {
-            movies[MovieSortBy.TRENDING]?.let {
-                TrendingItem(it, onMovieClick)
-                SpaceMedium()
+            item {
+                movies[MovieSortBy.TRENDING]?.let {
+                    Column {
+                        TrendingItem(it, onMovieClick)
+                        SpaceMedium()
+                    }
+                }
             }
-            movies[MovieSortBy.NOW_PLAYING]?.let {
-                MovieHeadline(
-                    it,
-                    MovieSortBy.NOW_PLAYING,
-                    onNowPlayingClick,
-                    onMovieClick
-                )
-                SpaceMedium()
+            item {
+                movies[MovieSortBy.NOW_PLAYING]?.let {
+                    Column {
+                        MovieHeadline(
+                            it,
+                            MovieSortBy.NOW_PLAYING,
+                            onNowPlayingClick,
+                            onMovieClick
+                        )
+                        SpaceMedium()
+                    }
+                }
             }
 
-            movies[MovieSortBy.POPULAR]?.let {
-                MovieHeadline(
-                    it,
-                    MovieSortBy.POPULAR,
-                    onPopularClick,
-                    onMovieClick
-                )
-                SpaceMedium()
+            item {
+                movies[MovieSortBy.POPULAR]?.let {
+                    Column {
+                        MovieHeadline(
+                            it,
+                            MovieSortBy.POPULAR,
+                            onPopularClick,
+                            onMovieClick
+                        )
+                        SpaceMedium()
+                    }
+                }
             }
-            movies[MovieSortBy.TOP_RATED]?.let {
-                MovieHeadline(
-                    it,
-                    MovieSortBy.TOP_RATED,
-                    onTopRatedClick,
-                    onMovieClick
-                )
-                SpaceMedium()
+            item {
+                movies[MovieSortBy.TOP_RATED]?.let {
+                    Column {
+                        MovieHeadline(
+                            it,
+                            MovieSortBy.TOP_RATED,
+                            onTopRatedClick,
+                            onMovieClick
+                        )
+                        SpaceMedium()
+                    }
+                }
             }
-            movies[MovieSortBy.UPCOMING]?.let {
-                MovieHeadline(
-                    it,
-                    MovieSortBy.UPCOMING,
-                    onUpcomingClick,
-                    onMovieClick
-                )
-            }
+           item {
+               movies[MovieSortBy.UPCOMING]?.let {
+                   MovieHeadline(
+                       it,
+                       MovieSortBy.UPCOMING,
+                       onUpcomingClick,
+                       onMovieClick
+                   )
+               }
+           }
 
         }
         if (isLoading) {

@@ -1,4 +1,4 @@
-package dev.rendrap.app.movienight.feature.home.component
+package dev.rendrap.app.movienight.core.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.rendrap.app.movienight.core.designsystem.component.MVTitleMedium
+import dev.rendrap.app.movienight.core.designsystem.component.MVTitleLarge
 import dev.rendrap.app.movienight.core.designsystem.component.SpaceMedium
 import dev.rendrap.app.movienight.core.designsystem.theme.MVDimen
 import dev.rendrap.app.movienight.core.designsystem.theme.MVShape
@@ -28,13 +28,12 @@ import dev.rendrap.app.movienight.core.designsystem.utils.ThemePreviews
 import dev.rendrap.app.movienight.core.designsystem.utils.brutalism
 import dev.rendrap.app.movienight.core.resource.icons.MVIcon
 import dev.rendrap.app.movienight.core.resource.icons.mvicon.ChevronRight
-import dev.rendrap.app.movienight.core.ui.TMDBNetworkImage
 import dev.rendrap.app.movienight.model.Media
 import dev.rendrap.app.movienight.model.MediaType
 import dev.rendrap.app.movienight.model.Medias
 
 @Composable
-internal fun MediaItemWithCategory(
+fun MediaItemWithCategory(
     title: String,
     data: Medias,
     modifier: Modifier = Modifier,
@@ -49,7 +48,7 @@ internal fun MediaItemWithCategory(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            MVTitleMedium(title)
+            MVTitleLarge(title)
             Box(
                 Modifier
                     .brutalism(

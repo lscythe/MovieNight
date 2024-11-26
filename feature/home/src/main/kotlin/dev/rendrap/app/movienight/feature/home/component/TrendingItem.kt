@@ -56,11 +56,13 @@ internal fun TrendingItem(
                         .align(Alignment.BottomCenter)
                         .padding(bottom = MVDimen.Small),
                 ) {
-                    MVChip(
-                        selected = true,
-                        label = trendingMovie.genres.first(),
-                        backgroundColor = MaterialTheme.colorScheme.background
-                    )
+                    trendingMovie.genres.firstOrNull()?.let {
+                        MVChip(
+                            selected = true,
+                            label = it,
+                            backgroundColor = MaterialTheme.colorScheme.background
+                        )
+                    }
                     SpaceExtraSmall()
                     if (trendingMovie.adult) {
                         MVChip(

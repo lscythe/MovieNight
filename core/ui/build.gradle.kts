@@ -11,6 +11,7 @@ android {
 
 dependencies {
     implementation(projects.core.designsystem)
+    implementation(projects.model)
 
     implementation(libs.coil)
     implementation(libs.coil.compose)

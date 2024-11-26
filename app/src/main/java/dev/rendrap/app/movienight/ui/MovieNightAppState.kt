@@ -14,7 +14,6 @@ import androidx.navigation.navOptions
 import dev.rendrap.app.movienight.core.common.utils.NetworkMonitor
 import dev.rendrap.app.movienight.feature.home.navigation.HomeRoute
 import dev.rendrap.app.movienight.feature.home.navigation.navigateToHome
-import dev.rendrap.app.movienight.navigation.NavigationManager
 import dev.rendrap.app.movienight.navigation.TopLevelDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,18 +23,15 @@ import kotlinx.coroutines.flow.stateIn
 @Composable
 fun rememberMovieNightAppState(
     networkMonitor: NetworkMonitor,
-    navigationManager: NavigationManager,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController()
 ) = remember(
     networkMonitor,
     coroutineScope,
     navController,
-    navigationManager
 ) {
     MovieNightAppState(
         navController,
-        navigationManager,
         coroutineScope,
         networkMonitor,
     )
@@ -44,7 +40,6 @@ fun rememberMovieNightAppState(
 @Stable
 class MovieNightAppState(
     val navController: NavHostController,
-    val navigationManager: NavigationManager,
     coroutineScope: CoroutineScope,
     networkMonitor: NetworkMonitor,
 ) {

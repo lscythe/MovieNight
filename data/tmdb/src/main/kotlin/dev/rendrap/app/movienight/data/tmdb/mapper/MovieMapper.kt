@@ -41,5 +41,6 @@ internal fun MovieDetailResponse.toModel() = MovieDetail(
     popularity = popularity.orZero(),
     releaseDate = releaseDate.orEmpty(),
     rating = voteAverage.orZero(),
-    ratingCount = voteCount.orZero()
+    ratingCount = voteCount.orZero(),
+    adult = adult.orFalse()
 )

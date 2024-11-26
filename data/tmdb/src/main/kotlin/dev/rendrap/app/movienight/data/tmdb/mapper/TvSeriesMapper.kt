@@ -40,5 +40,6 @@ fun TvSeriesDetailResponse.toModel() = TvSeriesDetail(
     rating = voteAverage.orZero(),
     ratingCount = voteCount.orZero(),
     originCountry = originCountry.orEmpty(),
-    seasons = seasons.orEmpty().map { it.toModel() }
+    seasons = seasons.orEmpty().map { it.toModel() },
+    overview = overview.orEmpty()
 )

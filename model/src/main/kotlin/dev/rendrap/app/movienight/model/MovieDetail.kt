@@ -2,6 +2,7 @@ package dev.rendrap.app.movienight.model
 
 data class MovieDetail(
     val id: Long,
+    val adult: Boolean,
     val name: String,
     val originalName: String,
     val genres: List<String>,

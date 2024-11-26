@@ -9,6 +9,7 @@ androidx-core-splashscreen = "1.0.1"
 androidx-datastore = "1.1.1"
 androidx-hilt = "1.2.0"
 androidx-lifecycle = "2.8.7"
+androidx-media3 = "1.5.0"
 androidx-navigation = "2.8.4"
 androidx-paging = "3.3.4"
 androidx-room = "2.6.1"
@@ -21,6 +22,7 @@ arrow = "1.2.4"
 bcrypt = "0.10.2"
 chucker = "4.0.0"
 coil = "2.7.0"
+compose-video = "1.2.0"
 dagger = "2.51.1"
 datastore-security = "1.1.1-beta03"
 detekt = "1.23.7"
@@ -47,8 +49,8 @@ robolectric = "4.14"
 secrets = "2.0.1"
 spotless = "6.11.0"
 sqlchiper-android = "4.6.0"
-turbine = "1.1.0"
 truth = "1.4.4"
+turbine = "1.1.0"
 
 [libraries]
 android-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-desugar-jdk-libs" }
@@ -72,6 +74,11 @@ androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-com
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
+androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "androidx-media3" }
+androidx-media3-exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "androidx-media3" }
+androidx-media3-exoplayer-hls = { module = "androidx.media3:media3-exoplayer-hls", version.ref = "androidx-media3" }
+androidx-media3-session = { module = "androidx.media3:media3-session", version.ref = "androidx-media3" }
+androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "androidx-media3" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androidx-paging" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime-ktx", version.ref = "androidx-paging" }
@@ -94,6 +101,7 @@ chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "ch
 chucker-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+compose-video = { module = "io.sanghun:compose-video", version.ref = "compose-video" }
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 dagger-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "dagger" }
 dagger-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
@@ -133,8 +141,8 @@ quiver-test = { module = "app.cash.quiver:lib-test", version.ref = "quiver" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 security-crypto-datastore-preferences = { module = "io.github.osipxd:security-crypto-datastore-preferences", version.ref = "datastore-security" }
 sqlcipher-android = { module = "net.zetetic:sqlcipher-android", version.ref = "sqlchiper-android" }
-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 #Dependencies for build-logic
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }

@@ -21,7 +21,6 @@ import dev.rendrap.app.movienight.core.common.utils.Theme
 import dev.rendrap.app.movienight.core.designsystem.theme.MVTheme
 import dev.rendrap.app.movienight.core.resource.ProvideResourceStrings
 import dev.rendrap.app.movienight.core.resource.rememberResourceStrings
-import dev.rendrap.app.movienight.navigation.NavigationManager
 import dev.rendrap.app.movienight.ui.MovieNightApp
 import dev.rendrap.app.movienight.ui.rememberMovieNightAppState
 import kotlinx.coroutines.flow.collect
@@ -33,9 +32,6 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
     @Inject
     lateinit var networkMonitor: NetworkMonitor
-
-    @Inject
-    lateinit var navigationManager: NavigationManager
 
     private val viewModel: MainActivityViewModel by viewModels()
 
@@ -69,7 +65,6 @@ class MainActivity : ComponentActivity() {
 
             val appState = rememberMovieNightAppState(
                 networkMonitor = networkMonitor,
-                navigationManager = navigationManager,
             )
 
             MVTheme(

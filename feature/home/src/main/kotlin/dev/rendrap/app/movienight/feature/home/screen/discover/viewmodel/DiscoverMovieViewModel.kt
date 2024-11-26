@@ -9,7 +9,6 @@ import dev.rendrap.app.movienight.domain.tmdb.parameter.MovieType
 import dev.rendrap.app.movienight.domain.tmdb.parameter.TrendingParameter
 import dev.rendrap.app.movienight.domain.tmdb.usecase.GetMovies
 import dev.rendrap.app.movienight.domain.tmdb.usecase.GetTrending
-import dev.rendrap.app.movienight.feature.home.navigation.HomeNavigation
 import dev.rendrap.app.movienight.model.MediaType
 import dev.rendrap.app.movienight.model.Medias
 import dev.rendrap.app.movienight.model.MovieSortBy
@@ -25,7 +24,6 @@ import javax.inject.Inject
 class DiscoverMovieViewModel @Inject constructor(
     private val getMovies: GetMovies,
     private val getTrending: GetTrending,
-    val nav: HomeNavigation
 ) : ViewModel() {
     private val _uiState: MutableStateFlow<DiscoverMovieUIState> =
         MutableStateFlow(DiscoverMovieUIState.Loading)
