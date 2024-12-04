@@ -282,7 +282,7 @@ fun MVScaffold(
         snackbarHost = snackbarHost,
         containerColor = backgroundColor
     ) { innerPadding ->
-        Box(
+        MVBackground(
             Modifier
                 .fillMaxSize()
                 .padding(innerPadding)

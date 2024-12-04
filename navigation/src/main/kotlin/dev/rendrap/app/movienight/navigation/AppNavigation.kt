@@ -13,8 +13,8 @@ import dev.rendrap.app.movienight.feature.home.navigation.HomeNavGraph
 import dev.rendrap.app.movienight.feature.player.navigation.PlayerRoute
 import dev.rendrap.app.movienight.feature.player.screen.PlayerScreen
 import dev.rendrap.app.movienight.model.MediaType
-import dev.rendrap.app.movienight.navigation.graph.detailNavGraph
-import dev.rendrap.app.movienight.navigation.graph.homeNavGraph
+import dev.rendrap.app.movienight.navigation.navgraph.detailNavGraph
+import dev.rendrap.app.movienight.navigation.navgraph.homeNavGraph
 
 @Composable
 fun MVNavHost(

@@ -18,6 +18,7 @@
             android:exported="true"
             android:theme="@style/Theme.MovieNight">
             <intent-filter>
+                <action android:name="${applicationId}.TRANSMOGRIFY"/>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

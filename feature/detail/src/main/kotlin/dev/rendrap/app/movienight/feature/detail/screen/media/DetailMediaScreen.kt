@@ -25,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -69,6 +70,7 @@ fun MediaScreen(
     val tvShow by viewModel.tvShow.collectAsStateWithLifecycle()
     val similar by viewModel.similar.collectAsStateWithLifecycle()
     val video by viewModel.videos.collectAsStateWithLifecycle()
+    val uriHandler = LocalUriHandler.current
 
     LaunchedEffect(media) {
         when (media.second) {
@@ -87,7 +89,7 @@ fun MediaScreen(
         video = video,
         modifier = modifier,
         onBackClick = onBackClick,
-        onClickPlay = onPlayClick
+        onClickPlay = { uriHandler.openUri(it) }
     )
 
 }
@@ -106,6 +108,7 @@ private fun MediaScreen(
 ) {
     val isLoading = uiState is DetailMediaUIState.Loading
     val color = LocalMVColor.current
+
     Box(
         modifier
             .fillMaxSize()

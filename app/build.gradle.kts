@@ -1,5 +1,6 @@
-import com.android.manifmerger.PlaceholderHandler.APPLICATION_ID
+
 import dev.rendrap.app.movienight.BuildTypes
+import dev.rendrap.app.movienight.config.BuildConfig.APPLICATION_ID
 import dev.rendrap.app.movienight.config.BuildConfig.INSTRUMENT_RUNNER
 
 plugins {
@@ -23,7 +24,6 @@ android {
         }
         release {
             isMinifyEnabled = true
-            applicationIdSuffix = BuildTypes.RELEASE.applicationIdSuffix
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

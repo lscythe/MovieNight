@@ -1,4 +1,4 @@
-package dev.rendrap.app.movienight.navigation.graph
+package dev.rendrap.app.movienight.navigation.navgraph
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.fadeIn

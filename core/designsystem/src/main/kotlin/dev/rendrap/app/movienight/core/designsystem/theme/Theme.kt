@@ -265,10 +265,10 @@ fun MVTheme(
     }
 
     CompositionLocalProvider(
-        LocalMVColor provides mvColor,
+        LocalMVColor provides MVLightColor,
     ) {
         MaterialTheme(
-            colorScheme = colorScheme,
+            colorScheme = lightScheme,
             typography = AppTypography,
             content = content
         )
